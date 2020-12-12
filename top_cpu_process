@@ -1,0 +1,14 @@
+#!/bin/bash
+
+label_icon=""
+label_color="$(xrescat i3xrocks.label.color)"
+value_color="$(xrescat i3xrocks.value.color)"
+value_font="$(xrescat i3xrocks.value.font)"
+
+cpu_usage_text="$(top -n 1 -b | egrep -v ' top$' | tail -n +8 | head -n 1 | awk '{if ($9/1 > 50) print $12 " " $9 "%"}')"
+#cpu_usage_text="$(ps -Ao comm,pcpu --sort=-pcpu | tail -n +2 | head -n 1 | awk '{if ($2 > 50) print $1 " " $2 "%"}')"
+
+# Hide CPU usage if nothing interesting is happening
+[[ -z "$cpu_usage_text" ]] && exit 0;
+
+echo "<span color=\"${label_color}\">$label_icon</span><span font_desc=\"${value_font}\" color=\"${value_color}\"> ${cpu_usage_text}</span>"
