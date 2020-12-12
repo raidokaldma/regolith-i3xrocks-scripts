@@ -210,6 +210,9 @@ fi
 [[ "$TN" == "$(printf "%s\n-0.0001\n" "$TN" | sort -g | head -1)" ]] && TN=0
 [[ "$AN" == "$(printf "%s\n-0.0001\n" "$AN" | sort -g | head -1)" ]] && AN=0
 
+# Hide network usage if nothing interesting is happening (upload + download < 1M bytes)
+[[ "$AX" -lt 1000000 ]] && exit 0;
+
 # output net usage using pango markup
 if [ "$RT" = "up" ]; then
   echo "$(lspan "${NIC}")$(fspan "$TN$SUF")$(lspan "${UP}")"
