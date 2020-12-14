@@ -16,3 +16,9 @@ interval=5
 command=/path/to/regolith-scripts/top_cpu_process
 interval=1
 ```
+
+### ~/.config/regolith/i3xrocks/conf.d/30_bluetooth
+[bluetooth]
+command=/path/to/regolith-scripts/bluetooth
+interval=20
+

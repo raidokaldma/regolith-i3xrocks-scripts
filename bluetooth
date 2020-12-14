@@ -1,0 +1,12 @@
+#!/bin/bash
+
+label_color="$(xrescat i3xrocks.label.color)"
+value_color="$(xrescat i3xrocks.value.color)"
+value_font="$(xrescat i3xrocks.value.font)"
+
+bluetooth_text="$(/usr/share/i3xrocks/bluetooth | xargs)"
+
+# Hide Bluetooth info if nothing interesting is happening
+[[ -z "$bluetooth_text" ]] && exit 0;
+
+echo "<span font_desc=\"${value_font}\" color=\"${value_color}\">${bluetooth_text}</span>"
