@@ -1,0 +1,13 @@
+#!/bin/bash
+
+label_color="$(xrescat i3xrocks.label.color)"
+value_color="$(xrescat i3xrocks.value.color)"
+value_font="$(xrescat i3xrocks.value.font)"
+
+tunnels_text="$(ls -1 ~/.ssh/sockets | sed s/tunnel-//g | paste -s -d " " -)"
+
+# Hide tunnel info if no tunnels are open
+[[ -z "$tunnels_text" ]] && exit 0;
+
+echo "<span color=\"${label_color}\">⭕</span><span font_desc=\"${value_font}\" color=\"${value_color}\"> ${tunnels_text}</span>"
+
